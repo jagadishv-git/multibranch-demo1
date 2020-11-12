@@ -1,10 +1,29 @@
 pipeline{
   agent any
   stages{
-    stage('Demo'){
+    stage('Deploy To Dev'){
+      when{
+        branch 'develop'
+      }
       steps{
-        echo "more comming soon..."
+        echo "Deploy to Dev servers"
       }            
+    }
+      stage('Deploy To UAT'){
+        when{
+          branch 'release'
+        }
+        steps{
+          echo "Deploy to UAT servers"
+      }
+    }
+    stage('Deploy To Prod'){
+        when{
+          branch 'master'
+        }
+        steps{
+          echo "Deploy to Prod servers"
+      }
     }
   }
 }
